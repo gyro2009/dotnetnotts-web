@@ -64,14 +64,17 @@ section{
 }
 
 .main-logo {
-    height: 25%;
-    width: 25%;
+    height: 70px;
+    width: 70px;
 }
-
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
+}
+
+.hide-menu {
+    display: unset;
 }
 
 app {
@@ -176,9 +179,34 @@ iframe {
 }
 
 .navbar-brand {
-    height: 20%;
-    width: 20%;
+    height: 75px;
+    width: 75px;
     float: left;
+    margin-right: 0;
+}
+
+.nav-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    display: block;
+    flex: 0 1 auto;
+    list-style-type: none;
+}
+
+.hamburger {
+    margin: 30px 20px;
+    float: right;
+    background-color: #fff;
+    border: none;
+    display: none;
 }
 
 .nav-menu-links {
@@ -323,10 +351,6 @@ iframe {
         padding: 5em 1em !important;
     }
 
-    .navbar-brand {
-        display: none;
-    }
-
     .nav-menu-links .icon {
         display: block;
     }
@@ -376,10 +400,6 @@ iframe {
         padding: 5em 1em !important;
     }
 
-    .navbar-brand {
-        display: none;
-    }
-
     .nav-menu-links .icon {
         display: block;
     }
@@ -403,7 +423,6 @@ iframe {
 
 /* desktop */
 @media (min-width:1025px){
-
     .content {
         padding-top: 1.1rem;
         padding-left: 10rem;
@@ -416,6 +435,7 @@ iframe {
     
     .navbar-brand {
         display: block;
+        margin-right: 0;
     }
 
     .nav-menu-links .icon {
@@ -439,7 +459,26 @@ iframe {
     }
 }
 
-@media (max-width: 767.98px) {
+@media(max-width: 1024px) {
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu-links {
+        float: unset;
+    }
+
+    .hamburger {
+        display: unset;
+    }
+
+    .hide-menu {
+        display: none;
+    } 
+}
+
+@media (max-width: 768px) {
 
     .main .top-row.auth {
         justify-content: space-between;
@@ -449,15 +488,9 @@ iframe {
     .main .top-row .btn-link {
         margin-left: 0;
     }
-
-    .main-logo {
-        height: 5%;
-        width: 5%;
-    }
 }
 
 @media (min-width: 768px) {
-    
     app {
         flex-direction: row;
     }
