@@ -1,12 +1,9 @@
 using System;
 using System.Net.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Text;
+using dotnetnotts_web.HttpClients;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace dotnetnotts
 {
@@ -18,6 +15,10 @@ namespace dotnetnotts
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddHttpClient<MeetupApiHttpClient>(config =>
+            {
+                config.BaseAddress = new Uri("https://dotnetnotts-api.azurewebsites.net");
+            });
 
             await builder.Build().RunAsync();
         }

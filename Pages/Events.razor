@@ -1,4 +1,9 @@
 ﻿@page "/events"
+@using dotnetnotts_web.HttpClients
+@using System.Text.Json
+@using Meetup.Api
+@inject MeetupApiHttpClient MeetupHttpClient
+@inject IJSRuntime JsRuntime
 @{
     const int tabindex = 0;
 }
@@ -13,13 +18,24 @@
 <section>
     <div class="header-text">
         <h2 tabindex="@(tabindex)">Upcoming</h2>
+        <h3><NavLink class="nav-link" href="" tabindex="@(tabindex)">@_currentEvent?.Name</NavLink></h3>
+        @((MarkupString)_currentEvent?.Description)
     </div>
     <hr/>
 </section>
-
 <section>
     <div class="header-text">
         <h2 tabindex="@(tabindex)">Past Speakers</h2>
     </div>
     <hr/>
 </section>
+
+@code
+{
+    private Event _currentEvent;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _currentEvent = await MeetupHttpClient.GetCurrentEvent();
+    }
+}
